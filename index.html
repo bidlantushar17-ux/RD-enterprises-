@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalogue — RD Enterprises</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===========================
+   Global Variables
+   =========================== */
+    :root {
+      --ink-dark: #0d0d0f;
+      --ink-dark-2: #1c1c20;
+      --gold: #c9a24c;
+      --gold-press: #a8842e;
+      --bg: #f1f1f3;
+      --card: #ffffff;
+      --ink: #16171a;
+      --muted: #6b7078;
+      --line: #e1e2e5;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===========================
+   Header
+   =========================== */
+    header {
+      background: var(--ink-dark);
+      color: #fff;
+      padding: 14px 16px 16px;
+    }
+
+    .head-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .head-top img {
+      height: 44px;
+      width: auto;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .head-top .co {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #a9adb3;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-top: 14px;
+      letter-spacing: -.01em;
+      line-height: 1.05;
+    }
+
+    h1 .bar {
+      display: inline-block;
+      width: 34px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .sub {
+      color: #a9adb3;
+      font-size: .82rem;
+      margin-top: 6px;
+    }
+
+    /* ===========================
+   Sticky Controls
+   =========================== */
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--ink-dark-2);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      padding: 10px 0 11px;
+    }
+
+    .groups {
+      display: flex;
+      gap: 8px;
+      padding: 0 16px 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .groups::-webkit-scrollbar {
+      display: none;
+    }
+
+    .group-btn {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: transparent;
+      color: #cfd2d7;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: .86rem;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      line-height: 1.15;
+      white-space: nowrap;
+      text-align: left;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    .group-btn .gn {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: .68rem;
+      opacity: .65;
+      margin-top: 3px;
+    }
+
+    .group-btn:hover {
+      border-color: rgba(255, 255, 255, .4);
+      color: #fff;
+    }
+
+    .group-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #141414;
+    }
+
+    .group-btn.active .gn {
+      opacity: .75;
+    }
+
+    .chip-rail {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 16px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .chip-rail::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip-rail.hidden {
+      display: none;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: transparent;
+      color: #cfd2d7;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: .82rem;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    .chip .n {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      opacity: .7;
+      margin-left: 6px;
+    }
+
+    .chip:hover {
+      border-color: rgba(255, 255, 255, .4);
+      color: #fff;
+    }
+
+    .chip.active {
+      background: #fff;
+      border-color: #fff;
+      color: var(--ink-dark);
+    }
+
+    .chip.active .n {
+      opacity: .6;
+    }
+
+    /* ===========================
+   Section Meta & Search
+   =========================== */
+    .meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 18px 16px 10px;
+    }
+
+    .meta h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -.01em;
+    }
+
+    .meta .count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .search-wrap {
+      padding: 0 16px;
+    }
+
+    .search {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: .92rem;
+      padding: 11px 14px;
+      outline: none;
+    }
+
+    .search::placeholder {
+      color: #9aa0a8;
+    }
+
+    .search:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 162, 76, .18);
+    }
+
+    /* ===========================
+   Grid
+   =========================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 14px 16px 40px;
+    }
+
+    @media(min-width: 480px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(min-width: 760px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media(min-width: 1080px) {
+      .grid {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(13, 13, 15, .13);
+      border-color: #c7c8cc;
+    }
+
+    .card:active {
+      transform: translateY(0);
+    }
+
+    .thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .thumb img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .thumb .fallback {
+      display: none;
+      color: var(--muted);
+      font-size: .72rem;
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .thumb.err img {
+      display: none;
+    }
+
+    .thumb.err .fallback {
+      display: block;
+    }
+
+    .thumb.placeholder {
+      background: repeating-linear-gradient(135deg, #f5f5f6, #f5f5f6 10px, #eeeeef 10px, #eeeeef 20px);
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .thumb.placeholder .ph-icon {
+      font-size: 1.6rem;
+      opacity: .35;
+    }
+
+    .thumb.placeholder .ph-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem;
+      color: #9aa0a8;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .cap {
+      border-top: 1px solid var(--line);
+      padding: 9px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: .72rem;
+      color: var(--ink);
+      word-break: break-word;
+      line-height: 1.3;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-cat {
+      padding: 6px 10px 9px;
+      font-family: 'Inter', sans-serif;
+      font-size: .62rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      line-height: 1.3;
+    }
+
+    .empty {
+      padding: 40px 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* ===========================
+   Lightbox
+   =========================== */
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      background: rgba(10, 10, 12, .92);
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      backdrop-filter: blur(2px);
+    }
+
+    .lb.open {
+      display: flex;
+    }
+
+    .lb-inner {
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .lb-stage {
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      min-height: 240px;
+      max-height: 70vh;
+    }
+
+    .lb-stage img {
+      max-width: 100%;
+      max-height: 64vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lb-stage .ph-icon {
+      font-size: 3rem;
+      opacity: .3;
+    }
+
+    .lb-stage .ph-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      color: #9aa0a8;
+      margin-top: 8px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .lb-stage.placeholder {
+      flex-direction: column;
+      background: repeating-linear-gradient(135deg, #f5f5f6, #f5f5f6 10px, #eeeeef 10px, #eeeeef 20px);
+    }
+
+    .lb-cap {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: #fff;
+      font-size: .92rem;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .lb-cat {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: #a9adb3;
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .lb-counter {
+      font-family: 'JetBrains Mono', monospace;
+      color: #a9adb3;
+      font-size: .76rem;
+    }
+
+    .lb-enquire {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 2px;
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: .92rem;
+      padding: 12px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background .15s, transform .12s;
+    }
+
+    .lb-enquire:hover {
+      background: #1ebe57;
+    }
+
+    .lb-enquire:active {
+      transform: translateY(1px);
+    }
+
+    .lb-enquire svg {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .lb-close:hover {
+      background: var(--gold);
+      color: #141414;
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-nav:hover {
+      background: var(--gold);
+      color: #141414;
+    }
+
+    .lb-prev {
+      left: 10px;
+    }
+
+    .lb-next {
+      right: 10px;
+    }
+
+    @media(min-width: 700px) {
+      .lb-prev {
+        left: 24px;
+      }
+
+      .lb-next {
+        right: 24px;
+      }
+    }
+
+    /* ===========================
+   Logo Slider
+   =========================== */
+    .logo-slider {
+      background: #ffffff;
+      padding: 30px 0;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      position: relative;
+      width: 100%;
+      display: flex;
+    }
+
+    .logo-slider::before,
+    .logo-slider::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 60px;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .logo-slider::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .logo-slider::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .logo-slide-track {
+      display: flex;
+      width: max-content;
+      animation: scroll 30s linear infinite;
+      align-items: center;
+      gap: 60px;
+      padding: 0 30px;
+    }
+
+    .logo-slide-track img {
+      height: 70px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-50% - 30px));
+      }
+    }
+
+    /* ===========================
+   Footer
+   =========================== */
+    footer {
+      background: var(--ink-dark);
+      color: #a9adb3;
+      padding: 22px 16px;
+      font-size: .78rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer .name {
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: .92rem;
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="head-top">
+      <img src="images/rd enterpries.jpeg " alt="RD Enterprises">
+      <span class="co">RD Enterprises</span>
+    </div>
+    <h1><span class="bar"></span><span id="groupTitle">Waterproof Boxes</span></h1>
+    <p class="sub">Tap a category, pick a series, then tap any product to enlarge</p>
+  </header>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="groups" id="groups"></div>
+    <div class="chip-rail" id="chipRail"></div>
+  </div>
+
+  <!-- Meta -->
+  <div class="meta">
+    <h2 id="catTitle"></h2>
+    <span class="count" id="catCount"></span>
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <input id="search" class="search" type="search" placeholder="Search all products by code or name…"
+      autocomplete="off">
+  </div>
+
+  <!-- Grid -->
+  <div class="grid" id="grid"></div>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="distribution box.Png">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+    <div class="lb-inner">
+      <div class="lb-stage" id="lbStage"><img id="lbImg" src="" alt=""></div>
+      <div class="lb-cap"><span class="lb-cat" id="lbCat"></span><span id="lbName"></span></div>
+      <div class="lb-counter" id="lbCounter"></div>
+      <a class="lb-enquire" id="lbEnquire" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.042zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+        </svg>
+        <span>Enquire on WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Logo Slider -->
+  <div class="logo-slider">
+    <div class="logo-slide-track">
+      <!-- Original set -->
+      <img src="images/1.jpg" alt="Deepcab">
+      <img src="images/2.jpg" alt="Airon">
+      <img src="images/3.jpg" alt="Jigo">
+      <img src="images/4.jpg" alt="Kapil">
+      <img src="images/5.jpg" alt="Multispan">
+      <img src="images/6.jpg" alt="Phenix">
+      <img src="images/7.jpg" alt="Connectwell">
+      <img src="images/8.jpg" alt="Tibcon">
+      <img src="images/9.jpg" alt="Trinity">
+      <img src="images/10.jpg" alt="SGI">
+      <!-- Cloned set for infinite scroll effect -->
+      <img src="images/1.jpg" alt="Deepcab">
+      <img src="images/2.jpg" alt="Airon">
+      <img src="images/3.jpg" alt="Jigo">
+      <img src="images/4.jpg" alt="Kapil">
+      <img src="images/5.jpg" alt="Multispan">
+      <img src="images/6.jpg" alt="Phenix">
+      <img src="images/7.jpg" alt="Connectwell">
+      <img src="images/8.jpg" alt="Tibcon">
+      <img src="images/9.jpg" alt="Trinity">
+      <img src="images/10.jpg" alt="SGI">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="name">RD Enterprises</div>
+    Ludhiana, Punjab<br>
+    <a href="tel:+917494990354">+917494990354 </a> · <a href="https://wa.me/917494990354?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products.">WhatsApp</a>
+  </footer>
+
+  <script>
+    // ============================================================
+    // IMAGE FOLDER PATH
+    // ============================================================
+    const IMAGE_FOLDER = "images/";
+
+    // Filename ya URL se final image path banane wala function.
+    // Isko chhedne ki zaroorat nahi hai.
+    function resolveImagePath(image) {
+      if (!image) return "";                 // image blank hai -> placeholder dikhega
+      if (/^https?:\/\//i.test(image)) return image; // pehle se poora URL hai
+      return IMAGE_FOLDER + image;           // sirf filename diya hai, folder ke andar se lo
+    }
+
+    const GROUPS = {
+      "waterproof-boxes": {
+        label: "Waterproof Boxes",
+        labels: {
+          "distribution-boxes": "Distribution Boxes",
+          "transformer-junction-box": "Transformer Junction Box",
+          "ht-series-boxes": "HT Series Boxes",
+          "abs-junction-boxes": "ABS Junction Boxes",
+          "sintex-boxes": "Sintex Boxes",
+          "domestic-series": "Domestic Series",
+          "waterproof-connector": "Waterproof Connector"
+        },
+        data: {
+          "distribution-boxes": [
+            { name: "ZH1802-B", image: "zh1802-b.jpg" },
+            { name: "S-20 BOX", image: "s 20 box.jpg" },
+            { name: "YELLOW PORTABLE DISTRIBUTION BOX", image: "distriution boxs.png" },
+            { name: "JG-ZH1802 WHITE", image: "distriution boxs 1.png" },
+          ],
+          "transformer-junction-box": [
+            { name: "PC-200X150X100", image: "transparent  box 1.png" },
+            { name: "PC-200X200X130", image: "transparent  box 2png.png" },
+            { name: "PC-280X190X130", image: "transparent  box 3.png" },
+          ],
+          "ht-series-boxes": [
+            { name: "HT-2WAY", image: "ht.jpg" },
+            { name: "HT-5WAY", image: "HT series.jpg" },
+            { name: "HT-8WAY", image: "ht 3.jpg" },
+            { name: "HT-12WAY", image: "HT series 4.jpg" },
+            { name: "HT-18WAY", image: "ht series 6.jpg" },
+            { name: "HT-24WAY", image: "ht series 5.jpg" },
+          ],
+          "abs-junction-boxes": [
+            { name: "ABS-100X100X70", image: "ABS1.png" },
+            { name: "ABS-150X110X70", image: "ABS2.png" },
+            { name: "ABS-150X150X70", image: "ABS3.jpg" },
+            { name: "ABS-200X155X80", image: "ABS4.png" },
+            { name: "ABS-255X200X80", image: "ABS5.png" },
+            { name: "ABS-300X250X120", image: "ABS6.jpg" },
+            { name: "ABS-400X350X120", image: "ABS7.jpg" },
+          ],
+          "sintex-boxes": [
+            { name: "JB - 14X14", image: "sintex boxs 1.png" },
+            { name: "JB - 20X14", image: "sintex boxs 2.png" },
+            { name: "JB - 25X20", image: "sintex boxs 3.png" },
+            { name: "JB - 28X17", image: "sintex boxs 4.png" },
+            { name: "JB - 40X30", image: "sintex boxs 5.png" },
+            { name: "MB - 34X25", image: "sintex boxs 6.png" },
+          ],
+          "domestic-series": [
+            { name: "IP-67 ATC - DS - 1+1+S", image: "domestic series 1.png" },
+            { name: "IP-67 ATC - DS - 2", image: "domestic series 2.png" },
+            { name: "IP-67 ATC - DS - 2+2+S", image: "domestic series 3.png" },
+            { name: "IP-67 ATC - DS - 2+S", image: "domestic series 4.png" },
+          ],
+          "waterproof-connector": [
+            { name: "JG-KVF", image: "water poof connector 1.png" },
+            { name: "JG-M686-4A", image: "water poof connector 2.png" },
+            { name: "JG-M686-4B", image: "water poof connector 3.png" },
+            { name: "JG-M686-2", image: "water poof connector 4.png" },
+            { name: "JG-M686-5", image: "water poof connector 5.png" },
+            { name: "JG-M686-6", image: "water poof connector 6.png" },
+            { name: "JG-M686-3", image: "water poof connector 7.png" },
+            { name: "JG-F-2505-5P", image: "water poof connector 8.png" },
+            { name: "JG-M25-4P(5-8)", image: "water poof connector 9.png" },
+            { name: "JG-M25-R3", image: "water poof connector 10.png" },
+            { name: "JG-M2003-2P", image: "water poof connector 11.png" },
+            { name: "JG-M2003-3P", image: "water poof connector 12.png" },
+          ]
+        }
+      },
+
+      "measuring-instruments": {
+        label: "Measuring Instruments",
+        labels: {
+          "digital-multimeters": "Digital Multimeters",
+          "clamp-meters": "Clamp Meters",
+          "laser-distance-meters": "Laser Distance Meters",
+          "Voltage & Continuty Tester":"Voltage & Continuty Tester",
+          "voltage-continuity-testers": "Voltage & Continuity Testers",
+          "battery-testers": "Battery Testers",
+          "thermometers": "Thermometers",
+          "cable-testers": "Cable Testers"
+        },
+        data: {
+          "digital-multimeters": [
+            { name: "Professional Type Digital Multimeter", image: "digital1.jpg" },
+            { name: "Digital Multimeter DT830D-Multipurpose Electric Meter", image: "digital2.webp" },
+            { name: "UT-60BT", image: "digital3.jpg" },
+            { name: "UT17B PRO", image: "digital4.jpg" },
+            { name: "UT-33D+", image: "digital5.jpg" },
+          ],
+          "clamp-meters": [
+            { name: "AC Digital Clampmeter", image: "clamp1.jpg" },
+            { name: "Meco 27-Auto Digtal Clamp Meter RED", image: "clamp2.jpg" },
+            { name: "UT200A+", image: "clamp3.jpg" },
+            { name: "UT200B+", image: "clamp4.jpg" },
+            { name: "UT221", image: "clamp5.jpg" },
+            { name: "UT222", image: "clamp6.jpg" },
+            { name: "UT2117R", image: "clamp7.jpg" },
+            { name: "UT2117R", image: "clamp8.jpg" },
+          ],
+          "laser-distance-meters": [
+            { name: "LM60T", image: "laser1.jpg" },
+            { name: "LM50A", image: "laser2.jpg" },
+            { name: "LM100A", image: "laser3.jpg" },
+            
+
+          ],
+          "Voltage & Continuty Tester":[
+               { name: "UT12D-ROW", image: "laser4.jpg" },
+          ],
+          "battery-testers": [
+            { name: "UT658", image: "battery-tester1.jpg" },
+          ],
+          "thermometers": [
+            { name: "UT306S", image: "thermometer1.jpg" },
+          ],
+          "cable-testers": [
+            { name: "UT521", image: "cable1.jpg" },
+          ]
+        }
+      },
+
+      "eot-crane-remote": {
+        label: "EOT Crane Remote",
+        labels: {
+          "COB Series": "COB Series",
+          "Radio Series": "Radio Series",
+          "PL Series": "PL Series",
+        },
+        data: {
+          "COB Series": [
+            { name: "COB-68C", image: "COB1.jpg" },
+            { name: "COB-61DRH", image: "COB2.jpg" },
+            { name: "COB-63", image: "COB3.jpg" },
+            { name: "COB-61", image: "COB4.jpg" },
+
+          ],
+          "Radio Serie": [
+            { name: "F23-A++( S )", image: "Radio1.png" },
+          ],
+          "PL Series": [
+            { name: "PL05", image: "pL1.png" },
+            { name: "PL05D", image: "pL2.png" },
+            { name: "PL07", image: "pL3.png" },
+          ]
+
+
+        }
+      },
+
+      "tools": {
+        label: "Tools",
+        labels: {
+          "crimping-pliers": "Crimping Pliers",
+          "hydraulic-tools": "Hydraulic Tools",
+          "din-rail-cutters": "Din Rail Cutters",
+          "wire-strippers": "Wire Strippers",
+          "wire-cutters": "Wire Cutters",
+          "bus-bar-processors": "Bus Bar Processors",
+          "pneumatic-battery-tools": "Pneumatic & Battery Tools"
+        },
+        data: {
+          "crimping-pliers": [
+            { name: "JG-VSC8 6-4A", image: "crimping 1.jpg" },
+            { name: "JG-VSC11 16-4A", image: "crimping2.jpg" },
+            { name: "JG-VSC12 16-6A", image: "crimping3.jpg" },
+            { name: "JG-VSC10.16-4A", image: "crimping4.jpg" },
+            { name: "JG-HSC8 6-4A", image: "crimping5.jpg" },
+            { name: "JG-HSC8 6-6", image: "crimping6.jpg" },
+            { name: "VS1-16D", image: "crimping 7.jpg" },
+            { name: "A-2546B", image: "crimping8.jpg" },
+            { name: "HT-315", image: "crimping9.jpg" },
+            { name: "PZ 0.5-16", image: "crimping10.jpg" },
+            { name: "HS-16", image: "crimping11.jpg" },
+            { name: "HD-6", image: "crimping12.jpg" },
+            { name: "HX-26B", image: "crimping13.jpg" },
+            { name: "HX-38B", image: "crimping14.jpg" },
+            { name: "VC-150G", image: "crimping15.jpg" },
+            { name: "HX-50B / HX-50T", image: "crimping16.jpg" },
+            { name: "HX-120B / HX-120T", image: "crimping17.jpg" },
+            { name: "HX-150B", image: "crimping18.jpg" },
+            { name: "HX-150B", image: "crimping19.jpg" },
+            { name: "ELECTRICIAN PLIER", image: "crimping20.png" },
+            { name: "VSC8 6-4C", image: "crimping21.png" },
+            { name: "VSC8 6-6A", image: "crimping22.png" },
+            { name: "VSR-6D", image: "crimping23.png" },
+            { name: "VSR-16D", image: "crimping24.png" },
+            { name: "HSC8 16-4", image: "crimping25.png" },
+            { name: "HS-06WF", image: "crimping26.png" },
+            { name: "HS-02H1", image: "crimping27.png" },
+            { name: "HS-2MA", image: "crimping28.png" },
+            { name: "HS-05H", image: "crimping29.png" },
+            { name: "HS-30J", image: "crimping30.png" },
+            { name: "HS-35WF", image: "crimping31.png" },
+            { name: "LY-03C", image: "crimping32.png" },
+            { name: "SN-05WF", image: "crimping33.png" },
+            { name: "SN-06", image: "crimping34.png" },
+            { name: "LAS-005", image: "crimping35.png" },
+            { name: "SNA-28B", image: "crimping36.png" },
+            { name: "VSW-468R", image: "crimping37.png" },
+            { name: "HS-600A", image: "crimping38.png" },
+            { name: "HS-2008R", image: "crimping39.png" },
+            { name: "HT-200R", image: "crimping40.png" },
+            { name: "VSJ-110XC", image: "crimping41.png" },
+            { name: "VSZ-600G", image: "crimping42.png" },
+            { name: "FYQ-1000", image: "crimping43.png" },
+            { name: "HS-D1", image: "crimping44.png" },
+
+          ],
+          "hydraulic-tools": [
+            { name: "JG-CPC-16A", image: "hydraulic1.jpg" },
+            { name: "JG-FYQ-630", image: "hydraulic2.jpg" },
+            { name: "JG-KYQ-400", image: "hydraulic3.jpg" },
+            { name: "JG-YQK-70", image: "hydraulic4.jpg" },
+            { name: "JG-YQK-300A", image: "hydraulic5.jpg" },
+            { name: "JG-YQK-400", image: "hydraulic6.jpg" },
+            { name: "JG-ZCO-400", image: "hydraulic7.jpg" },
+
+          ],
+          "din-rail-cutters": [
+            { name: "DC-35", image: "din rail cutters 1.png" },
+          ],
+          "wire-strippers": [
+            { name: "HS-700A", image: "strippers1.jpg" },
+            { name: "FS-D5Y", image: "strippers2.jpg" },
+            { name: "FS-D5", image: "strippers3.jpg" },
+            { name: "HS-700D", image: "strippers4.jpg" },
+            { name: "PG-5", image: "strippers5.jpg" },
+            { name: "FS-D4D", image: "strippers6.jpg" },
+            { name: "FS-D3", image: "strippers7.png" },
+            { name: "HS-125", image: "strippers8.png" },
+            { name: "LK-250", image: "strippers9.png" },
+            { name: "LK-500", image: "strippers10.png" },
+            { name: "J-30", image: "strippers11.png" },
+            { name: "J-40", image: "strippers12.png" },
+            { name: "J-50", image: "strippers13.png" },
+            { name: "J-75", image: "strippers14.png" },
+            { name: "J-100", image: "strippers15.png" },
+            { name: "J-130A", image: "strippers16.png" },
+            { name: "JG-J-130", image: "strippers17.png" },
+            { name: "VC-36A", image: "strippers18.png" },
+          ],
+          "wire-cutters": [
+            { name: "YF-065", image: "cutters1.jpg" },
+            { name: "YF-065", image: "cutters2.jpg" },
+            { name: "LK-22A", image: "cutters3.jpg" },
+            { name: "LK-60A", image: "cutters4.jpg" },
+            { name: "HJ-130", image: "cutters5.jpg" },
+            { name: "FS-09", image: "cutters6.jpg" },
+            { name: "FSB-1080", image: "cutters7.png" },
+            { name: "FS-D6B", image: "cutter 8.png" },
+            { name: "FS-D6S", image: "cutter9.png" },
+            { name: "HS-95A", image: "cutter10.png" },
+            { name: "HS-109", image: "cutter11.png" },
+            { name: "HS-206", image: "cutter12.png" },
+            { name: "LK-38A", image: "cutter13.png" },
+            { name: "LY25-4", image: "cutter14.png" },
+            { name: "VK-35", image: "cutter15.png" },
+          ],
+          "bus-bar-processors": [
+            { name: "DHY-200", image: "bus bar 1.jpg" },
+            { name: "DHY-150", image: "bus bar2.jpg" },
+          ],
+          "pneumatic-battery-tools": [
+            { name: "FEK-5ND", image: "battery 1.png" },
+            { name: "EC-300", image: "battery 2.jpg" },
+            { name: "FEK-06M", image: "battery 3.png" },
+            { name: "EC-400", image: "battery 4.png" },
+            { name: "AM-10", image: "battery 5.png" },
+          ],
+        }
+      },
+
+      "control-switchgear": {
+        label: "Control & Switchgear",
+        labels: {
+          "mcb": "MCB",
+          "mccb": "MCCB",
+          "contactors": "Contactors",
+          "overload-relays": "Overload Relays",
+          "mpcbs": "MPCBs",
+          "surge-protective-device": "Surge Protective Device",
+          "automatic-transfer-switch": "Automatic Transfer Switch (ATS)"
+        },
+        data: {
+          "mcb": [
+            { name: "MCB 1POLE", image: "mcb-control1.jpg" },
+            { name: "MCB 2POLE", image: "mcb-control2.jpg" },
+            { name: "MCB 3POLE", image: "mcb-control3.jpg" },
+            { name: "MCB 4POLE", image: "mcb-control4.jpg" },
+            { name: "MCB 1 POLE", image: "mcb-control5.jpg" },
+            { name: "MCB 2 POLE", image: "mcb-control6.jpg" },
+            { name: "MCB 3 POLE", image: "mcb-control7.jpg" },
+            { name: "MCB 4 POLE", image: "mcb-control8.jpg" },
+
+          ],
+          "mccb": [
+            { name: "MCCB 3POLE", image: "mccb-control1.jpg" },
+            { name: "MCCB 4POLE", image: "mccb-control2.jpg" },
+            { name: "MCCB 3 POLE", image: "mccb-control3.jpg" },
+            { name: "MCCB 4 POLE", image: "mccb-control4.jpg" }
+          ],
+          "contactors": [
+            { name: "LC1D25BD", image: "contractors1.jpg" },
+            { name: "LC1E2510M5", image: "contractors2.jpg" },
+            { name: "LC1D65AMP", image: "contractors3.jpg" },
+            { name: "MNX-18", image: "contractors4.jpg" },
+            { name: "MNX-40", image: "contractors5.jpg" },
+          ],
+          "overload-relays": [
+            { name: "LRD05-12", image: "overload1.jpg" },
+            { name: "LRD14-16", image: "overload2.jpg" },
+            { name: "LRD21-22", image: "overload3.jpg" },
+            { name: "LRD32-35", image: "overload4.jpg" },
+            { name: "JG-EOCR-SS-05E-180-460VAC", image: "overload5.png" },
+            { name: "JG-EOCR-SS-05S-180-460VAC-1C", image: "overload6.png" },
+            { name: "JG-EOCR-SSD-05-220AC", image: "overload7.png" },
+          ],
+          "mpcbs": [
+            { name: "GV2ME 01", image: "mpcb1.jpg" },
+            { name: "GV2ME 08", image: "mpcb2.jpg" },
+
+          ],
+          "surge-protective-device": [
+            { name: "SPD-2P-AC420", image: "surge1.png" },
+            { name: "SPD-2P-DC1000", image: "surge2.png" },
+            { name: "SPD-3P-DC1000", image: "surge3.png" },
+          ],
+          "automatic-transfer-switch": [
+            { name: "JG-100-4P", image: "automation1.jpg" },
+            { name: "JG-160-4P", image: "automation2.jpg" },
+            { name: "JG-250-4P", image: "automation3.jpg" },
+            { name: "JG-400-4P", image: "automation4.jpg" },
+            { name: "JG-630-4P", image: "automation5.jpg" },
+            { name: "JG-800-4P", image: "automation6.png" },
+            { name: "JG-1000-4P", image: "automation7.png" },
+
+          ]
+        }
+      },
+      "automation": {
+        label: "Automation",
+        labels: {
+          "power-supply": "Power Supply",
+          "timers": "Timers",
+          "ssr": "SSR (Solid State Relay)",
+          "warning-tower-light": "Warning / Tower Light",
+          "glass-relays": "Glass Relays",
+          "limit-switch": "Limit Switch",
+          "temperature-controller": "Temperature Controller",
+          "sensor": "Sensor ",
+          "drag-chains": "Drag Chains",
+          "drives-vfd": "Drives (VFD)",
+          "wifi-meter": "Wifi Meter",
+          "protection-meter": "Protection Meter",
+          "mono-layer-switch": "Mono Layer Switch",
+          "emergency-exit-lights": "Emergency Exit Lights",
+          "float-switch": "Float Switch",
+          "foot-switches": "Foot Switches",
+          "sirens": "Sirens",
+          "Rotary Encoders": "Rotary Encoders",
+        },
+        data: {
+          "power-supply": [
+            { name: "JGNDR-120-24", image: "power1.png" },
+            { name: "JG-S-300-12", image: "power 2.png" },
+            { name: "JG-S-360-24", image: "power3.png" },
+            { name: "JG-S-500-24", image: "power4.png" },
+            { name: "JG-S-600-24", image: "power5.png" },
+            { name: "JG-S-S-120-24", image: "power6.png" },
+            { name: "JGLRS-35-24", image: "power7.png" },
+            { name: "JGLRS-50-5", image: "power8.png" },
+            { name: "JGLRS-75-5", image: "power9.png" },
+            { name: "JGLRS-100-5", image: "power10.png" },
+            { name: "JGLRS-125-5", image: "power11.png" },
+            { name: "JGLRS-150-5", image: "power12.png" },
+            { name: "JGLRS-150-24", image: "power13.png" },
+          ],
+          "timers": [
+            { name: "SSR-3 AA4840", image: "timers 1.png" },
+            { name: "JG-SD-415", image: "timers 2.png" },
+            { name: "JG-WLC-02", image: "timers 3.png" },
+            { name: "JG-3PPR", image: "timers 4.png" },
+            { name: "TIMER SWITCH", image: "timers 5.png" },
+            { name: "PROGRAMMABLE TIME SWITCH", image: "timers 6.png" },
+          ],
+          "ssr": [
+            { name: "RS-40A", image: "ssr1.jpg" },
+            { name: "SSR-40DA", image: "ssr2.png" },
+            { name: "SSR-3 DA4860", image: "ssr3.png" },
+            { name: "SSR-3 DA4840", image: "ssr4.png" },
+            { name: "SSR-3 AA4840", image: "ssr5.png" },
+          ],
+          "warning-tower-light": [
+            { name: "AL50E-RYGBM-23-31P2", image: "warning1.png" },
+            { name: "AL50E-RYGBWM-23-31P4", image: "warning2.png" },
+            { name: "AL70E-RM-23-31P4", image: "warning3.png" },
+            { name: "AL70E-RGM-23-31P4", image: "warning4.png" },
+            { name: "AL70E-RYGM-23-31P4", image: "warning5.png" },
+            { name: "AL70E-RYGBM-23-31P4", image: "warning6.png" },
+            { name: "JG-LTE-1103J BLUE", image: "warning7.png" },
+            { name: "JG-LTE-1103J GREEN", image: "warning8.png" },
+            { name: "JG-LTE-1103J RED", image: "warning9.png" },
+            { name: "JG-LTE-1103J YELLOW", image: "warning10.png" },
+            { name: "MULTI FUNCTION LAMP AL505-RYGM-23-24VAC-DC", image: "warning11.png" },
+            { name: "AVIATION LIGHT", image: "warning12.jpg" },
+          ],
+          "glass-relays": [
+            { name: "RELAY 8 PIN 220V AC", image: "glass1.jpg" },
+            { name: "RELAY 8PIN 110V AC", image: "glass2.jpg" },
+            { name: "RELAY 8PIN 24V DC", image: "glass3.jpg" },
+            { name: "RELAY 8 PIN 12V DC", image: "glass4.jpg" },
+            { name: "RELAY 14 PIN 220V AC", image: "glass5.jpg" },
+            { name: "RELAY 14 PIN 110V AC", image: "glass6.jpg" },
+          ],
+          "limit-switch": [
+            { name: "JG-XZ-15GQ21B", image: "micro1.png" },
+            { name: "JG-CZ-8112N", image: "micro2.jpg" },
+          ],
+          "temperature-controller": [
+            { name: "UTC-2201", image: "temperature1.jpg" },
+            { name: "UTC-1201", image: "temperature2.jpg" },
+            { name: "UTC-3201", image: "temperature3.jpg" },
+            { name: "UTC-4201", image: "temperature4.jpg" },
+            { name: "UTC-4201", image: "temperature5.jpg" },
+            { name: "TC-19", image: "temperature6.jpg" },
+          ],
+          "sensor": [
+            { name: "M8-NPN-NC", image: "sensors1.png" },
+            { name: "M8-PNP-NO", image: "sensors2.png" },
+            { name: "M8-PNP-NO+NC PHOTOS WITH REFLECTOR", image: "sensors3.png" },
+            { name: "M12-NPN-NC", image: "sensors4.png" },
+            { name: "M12-PNP-NO", image: "sensors5.png" },
+            { name: "M18-NPN-NO", image: "sensors6.png" },
+          ],
+          "drag-chains": [
+            { name: "15mm X 20mm", image: "drag1.jpg" },
+            { name: "18mm X 37mm", image: "drag2.jpg" },
+            { name: "25mm X 38mm", image: "drag3.jpg" },
+            { name: "25mm X 57mm", image: "drag4.jpg" },
+            { name: "35mm X 75mm", image: "drag5.jpg" },
+            { name: "35mm X 100m", image: "drag6.jpg" },
+          ],
+          "drives-vfd": [
+            { name: "7.5-KW", image: "drives1.jpg" },
+            { name: "2.2-KW", image: "drives2.jpg" },
+            { name: "1.5-KW", image: "drives3.jpg" },
+            { name: "0.75-KW", image: "drives4.jpg" },
+            { name: "0.4-KW", image: "drives5.jpg" },
+          ],
+          "wifi-meter": [
+            { name: "3-PHASE-NP5", image: "wifi1.png" },
+            { name: "WT-63TJ-1 VA", image: "wifi2.png" },
+          ],
+          "protection-meter": [
+            { name: "LA115-C402-30MM", image: "protection1.jpg" },
+            { name: "VAP-01-63A", image: "protection2.jpg" },
+            { name: "VAP-01-63A", image: "protection3.png" },
+            { name: "3-PHASE-NP5", image: "protection4.png" },
+          ],
+          "mono-layer-switch": [
+            { name: "LED-EM", image: "mono1.png" },
+            { name: "LA155-C2011-30MM", image: "mono2.png" },
+            { name: "LA115-C4022-30MM", image: "mono3.png" },
+            { name: "LA115-C4022-22MM", image: "mono4.png" },
+            { name: "LA115-C2011-22MM", image: "mono5.png" },
+            { name: "LA115-C402-30MM", image: "mono6.png" },
+          ],
+          "emergency-exit-lights": [
+            { name: "EMERGENCY EXIT LIGHT", image: "emergency1.png" },
+            { name: "LED-EM", image: "emergency2.jpg" },
+          ],
+          "float-switch": [
+            { name: "FLOAT SWITCH 2meter", image: "floating.jpg" },
+          ],
+          "foot-switches": [
+            { name: "FS-3", image: "foot1.png" },
+            { name: "FS-3", image: "foot2.png" },
+            { name: "LT-4 (PC)", image: "foot3.png" },
+            { name: "AFS-X1", image: "foot4.jpg" },
+            { name: "GG FOOT SWITCH", image: "foot5.jpg" },
+            { name: "FS-1", image: "foot6.jpg" },
+            { name: "FS-2", image: "foot7.jpg" },
+            { name: "LT-3", image: "foot8.jpg" },
+            { name: "YDT1-16", image: "foot9.jpg" },
+            { name: "YDT1-16", image: "foot10.png" },
+          ],
+          "sirens": [
+            { name: "MS-190", image: "sirens1.jpg" },
+            { name: "MS-290", image: "sirens2.jpg" },
+            { name: "MS-390", image: "sirens3.jpg" },
+            { name: "MS-490", image: "sirens4.jpg" },
+            { name: "MS-590", image: "sirens5.jpg" },
+            { name: "MS-790", image: "sirens6.png" },
+            { name: "ID-90", image: "sirens7.jpg" },
+          ],
+          "Rotary Encoders": [
+            { name: "E50S8-1000-3-T-1E50S8-1000-3-T-1", image: "rotary1.png" },
+            { name: "E50S8-1024-3-T-1", image: "rotary2.png" },
+            { name: "E50S8-2500-3-T-1", image: "rotary3.png" },
+          ]
+        }
+      },
+
+      "earthing-solutions": {
+        label: "Earthing Solutions",
+        labels: {
+          "earthing-solutions": "Earthing Solutions"
+        },
+        data: {
+          "earthing-solutions": [
+            { name: "GI EARTHING RODS", image: "earthing1.jpg" },
+          ]
+        }
+      },
+
+      "lock": {
+        label: "Lock",
+        labels: {
+          "lock": "Lock"
+        },
+        data: {
+          "lock": [
+            { name: "GOL PIN LOCK", image: "lock1.png" },
+            { name: "GOL PIN LOCK BLACK", image: "lock2.png" },
+            { name: "PVC GOL PIN LOCK", image: "lock3.png" },
+            { name: "PVC GOL PIN LOCK BLACK", image: "lock4.png" },
+            { name: "PVC WITH SILVER NOB LOCK", image: "lock5.png" },
+            { name: "PUSH LOCK", image: "lock6.png" },
+            { name: "35MM KNOB LOCK", image: "lock7.png" },
+            { name: "ONE SIDE NOB LOCK", image: "lock8.png" },
+            { name: "MS-401 GOLE PIN KEY LOCK", image: "lock9.png" },
+            { name: "KEY LOCK-102", image: "lock10.png" },
+            { name: "SILVER SLIDE LOCK", image: "lock11.png" },
+            { name: "TRIANGLE LOCK", image: "lock12.png" },
+          ]
+        }
+      },
+
+      "safety-items": {
+        label: "Safety Items",
+        labels: {
+          "safety-items": "Safety Items"
+        },
+        data: {
+          "safety-items": [
+            { name: "Anti Skid Electrical Safety Rubber Mat", image: "safety1.webp" },
+            { name: "Rubber Yellow Hand Gloves 11kv/22kv/33kv", image: "safety2.webp" },
+            { name: "Working Potetinal Electric", image: "safety3.webp" },
+            { name: "Safety Jacket", image: "safety4.jpg" },
+            { name: "Safety Footwear", image: "safety5.jpg" },
+
+          ]
+        }
+      },
+
+
+      "led-lighting": {
+        label: "LED Lighting",
+        labels: {
+          "led-lighting": "LED Lighting"
+        },
+        data: {
+          "led-lighting": [
+            { name: "12v Hylum Led Power", image: "light1.webp" },
+            { name: "BTSTO1 32-Channel Smart Stair LED Controller Kit", image: "light2.webp" },
+            { name: "DOOR SENSOR DOUBLE DOOR", image: "light3.webp" },
+            { name: "Led Light Strip", image: "light4.webp" },
+            { name: "Up Down Wall Light,6W", image: "light7.jpg" },
+            { name: "240 Led strip ww", image: "light9.jpeg" },
+            { name: "Hiiglxii-LED Lighting kit", image: "light8.webp" },
+
+          ]
+        }
+      },
+      "wiring-accessories": {
+        label: "Wiring Accessories",
+        labels: {
+          "Marking-Sleeve": "Marking Sleeve",
+          "cable-duct-din-rails": "Cable Duct & DIN Rails",
+          "cable-glands": "Cable Glands",
+          "cable-terminal": "Cable Terminal",
+          "wiring-connector": "Wiring Connector",
+          "bimetallic-lugs": "Bimetallic Lugs",
+          "cable-clip-ties": "Cable Clip & Ties",
+          "cable-drum": "Cable Drum",
+          "Industrial Plug & Socket": "Industrial Plug & Socket",
+          "Heavy Duty Connectors": "Heavy Duty Connectors",
+          "Pvc Flexible Pipe": "Pvc Flexible Pipe",
+          "Pvc Tapes": "Pvc Tapes",
+          "Pvc Ferul": "Pvc Ferul"
+        },
+        data: {
+          "Marking-Sleeve": [
+            { name: "MARKING SLEEVES", image: "sleeves1.jpg" },
+
+          ],
+          "cable-duct-din-rails": [
+            { name: "MS CABLE TRAY GI", image: "din rail1.jpg" },
+            { name: "DIN RAIL", image: "din rail2.jpg" },
+            { name: "PVC CHANNEL DUCT", image: "din rail3.jpg" },
+          ],
+          "cable-glands": [
+            { name: "DOUBLE COMPRESSION GLAND", image: "Gland1.jpg" },
+            { name: "HOSE GLANDS", image: "Gland2.jpg" },
+            { name: "PG THREAD CABLE GLAND", image: "Gland3.jpg" },
+            { name: "M THREAD CABLE GLAND", image: "Gland4.jpg" },
+            { name: "MG THREAD GLAND", image: "Gland5.jpg" },
+            { name: "METAL PG GLAND", image: "Gland6.jpg" },
+            { name: "SINGLE COMPRESSION GLAND", image: "Gland7.jpg" },
+
+
+          ],
+          "cable-terminal": [
+            { name: "JG-FDD 5.5-250", image: "Cable-Terminal1.jpg" },
+            { name: "JG-FDD 2-187(5)", image: "Cable-Terminal2.jpg" },
+            { name: "DJ622-D6.3B", image: "Cable-Terminal3.png" },
+            { name: "Cable Lugs", image: "Cable-Terminal4.jpg" },
+            { name: "Tublar Cable Lugs", image: "Cable-Terminal5.jfif" },
+          ],
+          "wiring-connector": [
+            { name: "CH 2", image: "Wiring-connectors1.png" },
+            { name: "LT-623", image: "Wiring-connectors2.jpg" },
+            { name: "PCT-222", image: "Wiring-connectors3.png" },
+            { name: "PCT-224", image: "Wiring-connectors4.png" },
+            { name: "PCT-223", image: "Wiring-connectors5.jpg" },
+          ],
+          "bimetallic-lugs": [
+            { name: "BI-METALLIC LUGS", image: "Bi-Metallic1.jpg" },
+          ],
+          "cable-clip-ties": [
+            { name: "100 Pack Zip Tie Adhesive Mounts Self Adhesive Cable Tie Base Holder", image: "Clable&Ties1.jpg" },
+            { name: "BLACK CABLE TIES", image: "Clable&Ties2.jpg" },
+            { name: "WHITE CABLE TIES", image: "Cable&Ties3.jpg" },
+            { name: "STAINLESS STEEL TIES", image: "Cable&Ties4.jpg" },
+            { name: "NAIL CLIPS", image: "cable&ties5.jpg" },
+          ],
+          "cable-drum": [
+            { name: "CABLE REEL YELLOW DOMESTIC WITH RCBO", image: "drums1.jpg" },
+            { name: "CABLE REEL ORANGE DOMESTIC WITH RCBO", image: "drums2.jpg" },
+            { name: "CABLE REEL SINGLE PHASE WITH MCB", image: "drums3.jpg" },
+            { name: "CABLE REEL BLACK DOMESTIC WITH RCBO", image: "drums4.jpg" },
+          ],
+          "Industrial Plug & Socket": [
+            { name: "JG-012", image: "plug1.jpg" },
+            { name: "JG-035", image: "plug2.jpg" },
+            { name: "JG-025", image: "plug3.jpg" },
+            { name: "JG-045", image: "plug4.jpg" },
+            { name: "JG-125", image: "plug5.jpg" },
+            { name: "JG-145", image: "plug6.jpg" },
+            { name: "JG-245", image: "plug7.jpg" },
+            { name: "JG-013Z", image: "plug8.png" },
+            { name: "JG-213Z", image: "plug9.png" },
+            { name: "JG-015Z", image: "plug10.png" },
+            { name: "JG-215Z", image: "plug11.png" },
+            { name: "JG-023Z", image: "plug12.png" },
+            { name: "JG-223Z", image: "plug13.png" },
+            { name: "JG-025Z", image: "plug14.png" },
+            { name: "JG-225Z", image: "plug15.png" },
+            { name: "JG-035Z", image: "plug16.png" },
+            { name: "JG-235Z", image: "plug17.png" },
+            { name: "JG-045Z", image: "plug18.png" },
+            { name: "JG-245Z", image: "plug19.png" },
+            { name: "JG-312", image: "plug20.png" },
+
+          ],
+          "Heavy Duty Connectors": [
+            { name: "HDC-10 PIN", image: "heavy1.png" },
+            { name: "HDC-12 PIN", image: "heavy2.png" },
+            { name: "HDC-16PIN", image: "heavy3.png" },
+            { name: "HDC-16 PIN BOTTOM CLOSE", image: "heavy4.png" },
+            { name: "HDC-24 PIN", image: "heavy5.png" },
+            { name: "HDC-24 PIN PC", image: "heavy6.png" },
+          ],
+          "Pvc Flexible Pipe": [
+            { name: "Pvc Flexible Pipe", image: "pipe1.jpg" },
+          ],
+          "Pvc Tapes": [
+            { name: "Pvc Tapes", image: "tapes1.avif" },
+          ],
+          "Pvc Ferul": [
+            { name: "Pvc Ferul", image: "ferrules.webp" },
+            { name: "Machine", image: "ferrules.jpeg" },
+          ],
+        }
+      },
+
+      "panel-accessories": {
+        label: "Panel Accessories",
+        labels: {
+          "la38-push-buttons": "LA38 Push Buttons",
+          "led-indicators": "Led Indicators",
+          "terminal-blocks": "Terminal Blocks",
+          "control-box": "Control Box",
+          "din-rail-display-meter": "Din Rail Display Meter",
+          "panel-cooling-fan": "Panel Cooling Fan",
+          "terminal-strips": "Terminal Strips",
+          "thermostats": "Thermostats",
+          "control-box-ip67": "Control Box IP67",
+          "insulators": "Insulators",
+          "mccb-box": "MCCB Box",
+          "industrial-bells": "Industrial Bells",
+          "sub-meter": "Sub Meter",
+          "starter": "Starter",
+          "sensors": "Sensors",
+          "protection-meter": "Protection Meter",
+          "mcb-busbars": "MCB BusBars",
+          "din-mount-indicators": "Din Mount Indicators",
+          "cam-switches": "Cam Switches",
+          "metal-push-button": "Metal Push Button",
+          "neutral-links": "Neutral Links",
+          "window-hoods": "Window Hoods",
+        },
+        data: {
+          "la38-push-buttons": [
+            { name: "LA38-11 PNZS YELLOW LATCHING", image: "La1.png" },
+            { name: "LA38-11 X22 -2P BLACK SELECTOR SWITCH", image: "La2.png" },
+            { name: "LA38-11 Y22 -2P LOCK KEY SWITCH", image: "La3.png" },
+            { name: "LA38-11 ZS40-C3 EMERGENCY SWITCH", image: "La4.png" },
+            { name: "LA38-11 ZS-D40 220V EMERGENCY SWITCH", image: "La5.png" },
+            { name: "LA38-11-X21 -2P BLACK SELECTOR SWITCH", image: "La6.png" },
+            { name: "LA38-11 PND 220V BLUE", image: "La7.png" },
+            { name: "LA38-11 PND 220V GREEN", image: "La8.png" },
+            { name: "LA38-11 PND 220V RED", image: "La9.png" },
+            { name: "LA38-11 PND 220V YELLOW", image: "La10.png" },
+            { name: "LA38-11 PNSW 220V", image: "La11.png" },
+            { name: "LA38-11 PNZS 220V BLUE LATCHING", image: "La12.png" },
+          ],
+          "led-indicators": [
+            { name: "HARMONY INDICATOR AD16-22DS YELLOW", image: "led1.jpg" },
+            { name: "ROUND INDICATOR AD16-22DS BLUE", image: "led2.jpg" },
+            { name: "ROUND AD16-22DS GREEN", image: "led3.jpg" },
+            { name: "ROUND INDICATOR AD16-22DS RED", image: "led4.jpg" },
+            { name: "ROUND INDICATOR AD16-22DS YELLOW", image: "led5.jpg" },
+          ],
+          "terminal-blocks": [
+            { name: "TERMINAL BLOCK 2.5mm", image: "blocks1.jpg" },
+            { name: "TERMINAL BLOCK 4mm", image: "blocks2.jpg" },
+            { name: "TERMINAL BLOCK 6mm", image: "blocks3.jpg" },
+            { name: "TERMINAL BLOCK 10mm", image: "blocks4.jpg" },
+            { name: "TERMINAL BLOCK 35mm", image: "blocks5.jpg" },
+            { name: "TERMINAL BLOCK 16mm", image: "blocks6.jpg" },
+            { name: "TB 2.5mm YELLOW", image: "blocks7.jpg" },
+            { name: "TB 2.5mm RED", image: "blocks8.jpg" },
+            { name: "TB 2.5mm BLACK", image: "blocks9.jpg" },
+            { name: "TB 2.5mm GREEN", image: "blocks10.jpg" },
+            { name: "TB 4mm BLUE", image: "blocks11.jpg" },
+            { name: "TB 4mm BLACK", image: "blocks12.jpg" },
+            { name: "TB 4mm YELLOW", image: "blocks13.jpg" },
+            { name: "TB 4mm GREEN", image: "blocks14.jpg" },
+            { name: "TB 4mm RED", image: "blocks15.jpg" },
+            { name: "TB 6mm YELLLOW", image: "blocks16.jpg" },
+            { name: "TB 6mm BLUE", image: "blocks17.jpg" },
+            { name: "TB 6mm BLACK", image: "blocks18.jpg" },
+            { name: "TB 6mm RED", image: "blocks19.jpg" },
+            { name: "TB 6mm GREEN", image: "blocks20.jpg" },
+            { name: "TB 10mm YELLOW", image: "blocks21.jpg" },
+            { name: "TB 10mm RED", image: "blocks22.jpg" },
+            { name: "TB 10mm BLACK", image: "blocks23.jpg" },
+            { name: "TB 10mm BLUE", image: "blocks24.jpg" },
+            { name: "TB 10mm GREEN", image: "blocks25.jpg" },
+            { name: "TB 16mm GREEN", image: "blocks26.jpg" },
+            { name: "RBO 6/WA50", image: "blocks27.jpg" },
+            { name: "RBO 6/WA70", image: "blocks28.jpg" },
+            { name: "RBO 8/WA120", image: "blocks29.jpg" },
+            { name: "END COVER 2.5mm", image: "blocks30.jpg" },
+            { name: "END COVER 4mm", image: "blocks31.jpg" },
+            { name: "END COVER 16mm", image: "blocks32.jpg" },
+            { name: "PT 2,5", image: "blocks33.jpg" },
+            { name: "ST 2,5", image: "blocks34.jpg" },
+            { name: "TB 4-HESI EI", image: "blocks35.jpg" },
+            { name: "TB 4-HESILED 24V EI", image: "blocks36.jpg" },
+            { name: "SHORTLINK 10-6 N", image: "blocks37.jpg" },
+            { name: "SHORTLINK 10-8N", image: "blocks38.jpg" },
+            { name: "SHORTLINK 10-5 N", image: "blocks39.jpg" },
+
+          ],
+          "control-box": [
+            { name: "JG-1WAY PUSH BUTTON BOX", image: "control1.png" },
+            { name: "JG-2WAY PUSH BUTTON BOX", image: "control2.png" },
+            { name: "JG-3WAY PUSH BUTTON BOX", image: "control3.png" },
+            { name: "JG-4WAY PUSH BUTTON BOX", image: "control4.png" },
+            { name: "JG-6WAY PUSH BUTTON BOX", image: "control5.png" },
+          ],
+          "din-rail-display-meter": [
+            { name: "NV-1P VOLT PROTECTOR", image: "display1.jpg" },
+            { name: "NA-1P AMPERE METER", image: "display2.jpg" },
+            { name: "NHz-1P Frequency Meter", image: "display3.jpg" },
+            { name: "NVAHZ-1P DIN RAIL METER", image: "display4.jpg" },
+            { name: "N52-2042", image: "display5.jpg" },
+            { name: "N52-2066", image: "display6.jpg" },
+            { name: "N48-2058", image: "display7.jpg" },
+            { name: "MFM-D48-2058", image: "display8.png" },
+            { name: "M927-M1S2M1CTP1-A01", image: "display9.jpg" },
+            { name: "M967-M1S2M1CTP1-A01", image: "display10.jpg" },
+            { name: "D52-2066", image: "display11.jpg" },
+            { name: "6L2-V", image: "display12.png" },
+            { name: "6L2-A", image: "display13.png" },
+            { name: "6L2-AB", image: "display14.png" },
+
+          ],
+          "panel-cooling-fan": [
+            { name: "JG-AC-8025 ( 3 INCH)", image: "fans1.png" },
+            { name: "JG-AC-9025 ( 3.5 INCH)", image: "fans2.png" },
+            { name: "JG-AC-12038 ( 4 INCH)", image: "fans3.png" },
+            { name: "JG-AC- 150X150X50 SQUARE ( 6 INCH)", image: "fans4.png" },
+            { name: "JG-17051 SQUARE & ROUND (6INCH)", image: "fans5.png" },
+            { name: "JG-172X150X50 AC220-240V ROUND (6INCH)", image: "fans6.png" },
+            { name: "JG-200X200X60 SQUARE ( 8 INCH)", image: "fans7.png" },
+            { name: "JG-200X200X60 SQUARE & ROUND ( 8 INCH )", image: "fans8.png" },
+            { name: "JG-200X200X60-ROUND (8 INCH )", image: "fans9.png" },
+            { name: "JG-220V- ( 10 INCH ) ROUND", image: "fans10.png" },
+            { name: "JG-220V ( 12INCH ) SQUARE", image: "fans11.png" },
+            { name: "JG-220V ( 10 INCH ) SQUARE", image: "fans12.png" },
+            { name: "4-INCH FAN FILTER SQUARE", image: "fans13.png" },
+            { name: "4-INCH FAN GRILL SQUARE", image: "fans14.png" },
+            { name: "6-INCH FAN FILTER ROUND", image: "fans15.png" },
+            { name: "6-INCH FAN FILTER SQUARE", image: "fans16.png" },
+            { name: "6-INCH FAN GRILL ROUND", image: "fans17.png" },
+          ],
+          "terminal-strips": [
+            { name: "TB - 6004", image: "strips1.png" },
+            { name: "TB-10004", image: "strips2.png" },
+            { name: "TB-2004", image: "strips3.png" },
+            { name: "TB-1512", image: "strips4.png" },
+            { name: "TB-1508", image: "strips5.png" },
+            { name: "TB-1503", image: "strips6.png" },
+            { name: "TB-1502", image: "strips7.png" },
+            { name: "TB-30X2", image: "strips8.png" },
+            { name: "TB-30X3", image: "strips9.png" },
+            { name: "TB-30X4", image: "strips10.png" },
+            { name: "TB-30X12", image: "strips11.png" },
+            { name: "TB-1504", image: "strips12.png" },
+            { name: "TB-1506", image: "strips13.png" },
+            { name: "TB-2502", image: "strips14.png" },
+            { name: "TB-2503", image: "strips15.png" },
+            { name: "TB-2504", image: "strips16.png" },
+            { name: "TB-2506", image: "strips17.png" },
+            { name: "TB-2508", image: "strips18.png" },
+            { name: "TB-2512", image: "strips19.png" },
+            { name: "TB-4504", image: "strips20.png" },
+            { name: "TB-4506", image: "strips21.png" },
+            { name: "TB-4512", image: "strips22.png" },
+            { name: "TB-6006", image: "strips23.png" },
+          ],
+          "thermostats": [
+            { name: "ZR-011", image: "meter1.png" },
+            { name: "KTO-011", image: "meter2.png" },
+            { name: "KTS-011", image: "meter3.png" },
+            { name: "SF-095", image: "meter4.png" },
+          ],
+          "control-box-ip67": [
+            { name: "PUSH BUTTON BOX-1WAY", image: "boxs1.png" },
+            { name: "PUSH BUTTON BOX-2WAY", image: "boxs2.png" },
+            { name: "PUSH BUTTON BOX-3WAY", image: "boxs3.png" },
+            { name: "PUSH BUTTON BOX-5WAY", image: "boxs4.png" },
+            { name: "PUSH BUTTON BOX-6WAY", image: "boxs5.png" },
+            { name: "1WAY BOX WITH EMERGENCY SWITCH", image: "boxs6.png" },
+            { name: "PUSH BUTTON BOX-4WAY", image: "boxs7.png" },
+          ],
+          "insulators": [
+            { name: "INSULATOR L-60MM", image: "Insulotors1.png" },
+            { name: "INSULATOR L-85 MM", image: "Insulotors.png" },
+            { name: "INSULATOR L-105 MM", image: "Insulotors3.png" },
+            { name: "INSULATOR L-125 MM", image: "Insulotors4.png" },
+            { name: "INSULATOR-R 6-30", image: "Insulotors5.png" },
+            { name: "INSULATOR-R 8-40", image: "Insulotors6.png" },
+            { name: "INSULATOR-R60-12", image: "Insulotors7.png" },
+            { name: "INSULATOR-R-10X50", image: "Insulotors8.jpg" },
+            { name: "TERMINAL BOARD INSULATOR 60X2", image: "Insulotors9.jpg" },
+            { name: "TERMINAL BOARD INSULATOR 60X3", image: "Insulotors10.jpg" },
+            { name: "TERMINAL BOARD INSULATOR 60X4", image: "Insulotors11.jpg" },
+            { name: "TERMINAL BOARD INSULATOR 100X2", image: "Insulotors12.jpg" },
+            { name: "TERMINAL BOARD INSULATOR 100X3", image: "Insulotors13.jpg" },
+            { name: "TERMINAL BOARD INSULATOR 100X4", image: "Insulotors14.jpg" },
+            { name: "TERMINAL BOARD INSULATOR 200X4", image: "Insulotors15.jpg" },
+            { name: "SP-30 BLACK", image: "Insulotors16.jpg" },
+            { name: "SP-30 BLUE", image: "Insulotors17.jpg" },
+            { name: "SP-30 RED", image: "Insulotors18.jpg" },
+            { name: "SP-30 YELLOW", image: "Insulotors19.jpg" },
+            { name: "SP-35 BLACK", image: "Insulotors20.jpg" },
+            { name: "SP-35 BLUE", image: "Insulotors21.jpg" },
+            { name: "SP-35 RED", image: "Insulotors22.jpg" },
+            { name: "SP-35 YELLOW", image: "Insulotors23.jpg" },
+            { name: "SP-55 RED", image: "Insulotors24.jpg" },
+
+          ],
+          "mccb-box": [
+            { name: "MCCB Encloure", image: "mccb1.webp" },
+          ],
+          "industrial-bells": [
+            { name: "Security Store Electric industrial gong bell", image: "bells1.webp" },
+          ],
+          "sub-meter": [
+            { name: "Single phase sub meter", image: "sub meter1.webp" },
+            { name: "Three phase sub meter", image: "sub meter 2.webp" },
+          ],
+          "starter": [
+            { name: "Single Phase Starter", image: "starter1.jpg" },
+            { name: "Submerible Motor Starter Bente", image: "starter2.webp" },
+          ],
+          "sensors": [
+            { name: "Photocell Sensors,6A,Bule,Pole", image: "photo cell1.webp" },
+            { name: "Adjustable Light", image: "photo cell2.webp" },
+          ],
+          "protection-meter": [
+            { name: "NP2 VA PROTECTOR", image: "protection-meter1.jpg" },
+            { name: "NP2 VOLT PROTECTOR", image: "protection-meter2.jpg" },
+            { name: "NP2 AMPERE PROTECTOR", image: "protection-meter3.jpg" },
+            { name: "NP3 VOLT PROTECTOR", image: "protection-meter4.jpg" },
+            { name: "NP3 AMPERE PROTECTOR", image: "vprotection-meter5.jpg" },
+            { name: "NP3 VA PROTECTOR", image: "protection-meter6.jpg" },
+          ],
+          "mcb-busbars": [
+            { name: "1P-FORK-CU", image: "MCB1.jpg" },
+            { name: "2P-FORK-CU", image: "MCB2.jpg" },
+            { name: "3P-FORK-CU", image: "MCB3.jpg" },
+            { name: "4P-FORK-CU", image: "MCB4.jpg" },
+            { name: "1P-FORK-SL", image: "MCB5.jpg" },
+            { name: "2P-FORK-SL", image: "MCB6.jpg" },
+          ],
+          "din-mount-indicators": [
+            { name: "JD9-3", image: "din-mount1.png" },
+            { name: "PILOT LIGHT JG-AD116-D1-BLUE", image: "din-mount2.png" },
+            { name: "PILOT LIGHT JG-AD116-D1-GREEN", image: "din-mount3.png" },
+            { name: "PILOT LIGHT JG-AD116-D1-RED", image: "din-mount4.png" },
+            { name: "PILOT LIGHT JG-AD116-D1-WHITE", image: "din-mount5.png" },
+            { name: "PILOT LIGHT JG-AD116-D1-YELLOW", image: "din-mount6.png" },
+          ],
+          "cam-switches": [
+            { name: "LW30-20 3P", image: "cam1.png" },
+            { name: "LW30-63 3P", image: "cam2.png" },
+            { name: "LW30-63 4P", image: "cam3.png" },
+            { name: "LW40-63 3P", image: "cam4.png" },
+
+          ],
+          "metal-push-button": [
+            { name: "16MM 24V G LATCHING", image: "metal button 1.png" },
+            { name: "16MM 24V G SPRING RETURN", image: "metal button2.png" },
+            { name: "19MM 220V G LATCHING", image: "metal button3.png" },
+            { name: "19MM 220V G SPRING RETURN", image: "metal button4.png" },
+            { name: "22MM 24V G LATCHING", image: "metal button5.png" },
+            { name: "22MM 24V G SPRING RETURN", image: "metal button6.png" },
+          ],
+          "neutral-links": [
+            { name: "6 WAY-0609", image: "neutral1.png" },
+            { name: "8 WAY-0609", image: "neutral2.png" },
+            { name: "12 WAY-0609", image: "neutral3.png" },
+            { name: "16 WAY-0609", image: "neutral4.png" },
+            { name: "18 WAY-0609", image: "neutral5.png" },
+            { name: "20 WAY-0609", image: "neutral6.png" },
+          ],
+          "window-hoods": [
+            { name: "JG-2 POLE", image: "neutral1.jpg" },
+            { name: "JG-3 POLE", image: "neutral2.jpg" },
+            { name: "JG-4 POLE", image: "neutral3.jpg" },
+            { name: "JG-6 POLE", image: "neutral4.jpg" },
+            { name: "JG-8 POLE", image: "neutral5.jpg" },
+            { name: "JG-10 POLE", image: "neutral6.jpg" },
+          ],
+        }
+      }
+    };
+
+
+    const GROUP_ORDER = Object.keys(GROUPS);
+
+    /* Har product object { name, image } ko grid ke liye ready karta hai */
+    GROUP_ORDER.forEach(gk => {
+      const g = GROUPS[gk];
+      g.order = Object.keys(g.labels);
+      g.cat = {};
+      g.total = 0;
+      g.order.forEach(k => {
+        g.cat[k] = (g.data[k] || []).map(p => {
+          return { img: resolveImagePath(p.image), name: p.name, gk: gk, k: k, groupLabel: g.label, catLabel: g.labels[k] };
+        });
+        g.total += g.cat[k].length;
+      });
+    });
+
+    /* Flat index of every product, used for global (all-category) search */
+    const ALL_ITEMS = [];
+    GROUP_ORDER.forEach(gk => {
+      const g = GROUPS[gk];
+      g.order.forEach(k => g.cat[k].forEach(it => ALL_ITEMS.push(it)));
+    });
+
+    let activeGroup = GROUP_ORDER[0];
+    let activeKey = GROUPS[activeGroup].order[0];
+    let viewItems = [];
+    let lbIndex = 0;
+
+    const groupsEl = document.getElementById("groups");
+    const chipRail = document.getElementById("chipRail");
+    const groupTitle = document.getElementById("groupTitle");
+    const catTitle = document.getElementById("catTitle");
+    const catCount = document.getElementById("catCount");
+    const searchEl = document.getElementById("search");
+    const grid = document.getElementById("grid");
+
+    function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+    /* ---- Group toggle ---- */
+    function buildGroups() {
+      groupsEl.innerHTML = "";
+      GROUP_ORDER.forEach(gk => {
+        const g = GROUPS[gk];
+        const b = document.createElement("button");
+        b.className = "group-btn" + (gk === activeGroup ? " active" : "");
+        b.dataset.gk = gk;
+        b.innerHTML = g.label + '<span class="gn">' + g.total + ' products</span>';
+        b.onclick = () => {
+          activeGroup = gk;
+          activeKey = g.order[0];
+          searchEl.value = "";
+          buildGroups();
+          buildChips();
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        groupsEl.appendChild(b);
+      });
+    }
+
+    /* ---- Subcategory chips ---- */
+    function buildChips() {
+      const g = GROUPS[activeGroup];
+      chipRail.innerHTML = "";
+      chipRail.classList.toggle("hidden", g.order.length <= 1);
+      g.order.forEach(k => {
+        const b = document.createElement("button");
+        b.className = "chip" + (k === activeKey ? " active" : "");
+        b.dataset.k = k;
+        b.innerHTML = g.labels[k] + '<span class="n">' + g.cat[k].length + '</span>';
+        b.onclick = () => {
+          activeKey = k; searchEl.value = ""; render();
+          b.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+        };
+        chipRail.appendChild(b);
+      });
+      chipRail.scrollLeft = 0;
+    }
+
+    /* ---- Grid render ---- */
+    function render() {
+      const g = GROUPS[activeGroup];
+      const q = searchEl.value.trim().toLowerCase();
+
+      let items;
+      if (q) {
+        /* Global search across every group and category */
+        items = ALL_ITEMS.filter(it => it.name.toLowerCase().includes(q));
+        groupTitle.textContent = "Search Results";
+        catTitle.textContent = 'Results for "' + searchEl.value.trim() + '"';
+        [...chipRail.children].forEach(c => c.classList.remove("active"));
+      } else {
+        items = g.cat[activeKey];
+        groupTitle.textContent = g.label;
+        catTitle.textContent = g.labels[activeKey];
+        [...chipRail.children].forEach(c => c.classList.toggle("active", c.dataset.k === activeKey));
+      }
+      viewItems = items;
+
+      catCount.textContent = items.length + (items.length === 1 ? " item" : " items");
+      grid.innerHTML = "";
+
+      if (items.length === 0) {
+        const e = document.createElement("div");
+        e.className = "empty";
+        e.textContent = q ? 'No products match "' + searchEl.value + '" anywhere in the catalogue.' : "No products in this series yet.";
+        grid.appendChild(e);
+        return;
+      }
+
+      items.forEach((it, idx) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const tag = q ? '<div class="card-cat">' + esc(it.groupLabel) + ' · ' + esc(it.catLabel) + '</div>' : '';
+        const thumbHtml = it.img
+          ? '<div class="thumb"><img loading="lazy" src="' + it.img + '" alt="' + esc(it.name) + '"><span class="fallback">No Image Available</span></div>'
+          : '<div class="thumb placeholder"><span class="ph-icon">&#128247;</span><span class="ph-text">No Image Available</span></div>';
+        card.innerHTML = thumbHtml + '<div class="cap">' + esc(it.name) + '</div>' + tag;
+        const thumb = card.querySelector(".thumb");
+        const img = card.querySelector("img");
+        if (img) img.addEventListener("error", () => thumb.classList.add("err"));
+        card.onclick = () => openLightbox(idx);
+        grid.appendChild(card);
+      });
+    }
+
+    /* ---- Lightbox ---- */
+    const lb = document.getElementById("lightbox");
+    const lbStage = document.getElementById("lbStage");
+    const lbImg = document.getElementById("lbImg");
+    const lbName = document.getElementById("lbName");
+    const lbCat = document.getElementById("lbCat");
+    const lbCounter = document.getElementById("lbCounter");
+    const lbEnquire = document.getElementById("lbEnquire");
+
+    function openLightbox(i) { lbIndex = i; showLb(); lb.classList.add("open"); document.body.style.overflow = "hidden"; }
+    function showLb() {
+      const it = viewItems[lbIndex]; if (!it) return;
+      if (it.img) {
+        lbStage.classList.remove("placeholder");
+        lbStage.innerHTML = '<img id="lbImg" src="' + it.img + '" alt="' + esc(it.name) + '">';
+      } else {
+        lbStage.classList.add("placeholder");
+        lbStage.innerHTML = '<span class="ph-icon">&#128247;</span><span class="ph-text">No Image Available</span>';
+      }
+      lbName.textContent = it.name;
+      lbCat.textContent = it.groupLabel + " · " + it.catLabel;
+      lbCounter.textContent = (lbIndex + 1) + " / " + viewItems.length;
+      const msg = "Hi RD Enterprises, I'd like the price and availability for:\n"
+        + it.name + " (" + it.groupLabel + " \u203A " + it.catLabel + ")";
+      lbEnquire.href = "https://wa.me/917494990354?text=" + encodeURIComponent(msg);
+    }
+    function closeLightbox() { lb.classList.remove("open"); document.body.style.overflow = ""; }
+    function navLb(d) { lbIndex = (lbIndex + d + viewItems.length) % viewItems.length; showLb(); }
+
+    document.getElementById("lbClose").onclick = closeLightbox;
+    document.getElementById("lbPrev").onclick = () => navLb(-1);
+    document.getElementById("lbNext").onclick = () => navLb(1);
+    lb.addEventListener("click", e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener("keydown", e => {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") navLb(-1);
+      if (e.key === "ArrowRight") navLb(1);
+    });
+    let touchX = null;
+    lb.addEventListener("touchstart", e => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 45) navLb(dx < 0 ? 1 : -1);
+      touchX = null;
+    }, { passive: true });
+
+    searchEl.addEventListener("input", render);
+
+    /* ---- Init ---- */
+    buildGroups();
+    buildChips();
+    render();
+
+  </script>
+</body>
+
+</html>
